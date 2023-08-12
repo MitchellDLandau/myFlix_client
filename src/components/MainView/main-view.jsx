@@ -1,0 +1,37 @@
+import { useState } from "react"
+import { MovieCard } from "../MovieCard/movie-card";
+import { MovieView } from "../MovieView/movie-view";
+
+export const MainView = () => {
+    const [movies, setMovie] = useState([
+        { "_id": "64ad9db7eeb6443958c2dea8", "Genre": { "Name": "Marvel Phase One", "Description": "Phase One (2008 to 2012) primarily concerns the Avengers, with movies that focus on these superheroes both individually and as a group. Major characters include Iron Man, the Hulk, Thor, and Captain America, each of whom got their own movie." }, "Director": { "Name": "Jon Favreau", "Bio": "Jonathan Kolia Favreau (born October 19, 1966) is an American actor, screenwriter, film director and comedian. He is best known for appearing in films including Rudy, I Love You, Man, Swingers and Couples Retreat, as well as directing such films as Elf, Iron Man, and Iron Man 2." }, "Actors": [], "Title": "Iron Man", "Description": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.", "ImagePath": "https://www.themoviedb.org/t/p/w1280/78lPtwv72eTNqFW9COBYI0dWDJa.jpg", "Heroes": ["Iron Man"] },
+        { "_id": "64adc91aeeb6443958c2deb2", "Genre": { "Name": "Marvel Phase Two", "Description": "The movies in Marvel Phase Two (2013 to 2015) deal with the consequences of the events of The Avengers. The movies continue following the adventures of the Avengers superheroes, including Iron Man, Thor, Captain America, and Black Widow." }, "Director": { "Name": "Anthony and Joe Russo", "Bio": "Anthony J. Russo is an American filmmaker and producer who works alongside his brother Joseph Russo. They have directed You, Me and Dupree, Cherry and the Marvel films Captain America: The Winter Soldier, Captain America: Civil War, Avengers: Infinity War and Avengers: Endgame." }, "Actors": [], "Title": "Captain America: The Winter Soldier", "Description": "In the film, Captain America joins forces with Black Widow and Falcon to uncover a conspiracy within the spy agency S.H.I.E.L.D. while facing a mysterious assassin known as the Winter Soldier. Markus and McFeely began writing the sequel around the release of The First Avenger in July 2011.", "ImagePath": "https://www.themoviedb.org/t/p/w1280/tVFRpFw3xTedgPGqxW0AOI8Qhh0.jpg", "Heroes": ["Captain America", "Falcon", "Black Widow"], "Villain": "Hydra and the Winter Soldier" },
+        { "_id": "64aec30ceeb6443958c2dec6", "Genre": { "Name": "Marvel Phase Four", "Description": "Phase Four (2021 to 2022) marked the first leg of Marvel Studios' “Multiverse Saga,” with the Sacred Timeline branching out into various alternate realities that projects like What If...?, Spider-Man: No Way Home, and Doctor Strange in the Multiverse of Madness explored in depth." }, "Director": { "Name": "Jon Watts", "Bio": "Jon Watts is an American filmmaker and screenwriter. He directed Cop Car and Clown before he was picked by Marvel and Sony to direct Spider-Man: Homecoming starring Tom Holland and Zendaya. It's success resulted in two sequels, Far from Home in 2019 and No Way Home in 2021." }, "Actors": [], "Title": "Spider-Man: No Way Home", "Description": "Peter Parker's secret identity is revealed to the entire world. Desperate for help, Peter turns to Doctor Strange to make the world forget that he is Spider-Man. The spell goes horribly wrong and shatters the multiverse, bringing in monstrous villains that could destroy the world. The Multiverse Unleashed.", "ImagePath": "https://www.themoviedb.org/t/p/w1280/5weKu49pzJCt06OPpjvT80efnQj.jpg", "Heroes": ["Spider Man", "Spider Man 2", "Spider Man 3", "Doctor Strange", "Wong"], "Villain": "Green goblin with Doc Ock, Sandman, Electro, and The Lizard along for the ride" },
+        { "_id": "64aec1e7eeb6443958c2dec5", "Genre": { "Name": "Marvel Phase Four", "Description": "Phase Four (2021 to 2022) marked the first leg of Marvel Studios' “Multiverse Saga,” with the Sacred Timeline branching out into various alternate realities that projects like What If...?, Spider-Man: No Way Home, and Doctor Strange in the Multiverse of Madness explored in depth." }, "Director": { "Name": "Chloé Zhao", "Bio": "A director, screenwriter and producer, Chloé Zhao has quickly become one of the industry's leading filmmakers. Having held a fascination with the Old West since her childhood in Beijing, Zhao boasts an acclaimed slate of work that reflects this interest." }, "Actors": [], "Title": "Eternals", "Description": "In the film, the Eternals, immortal alien beings, emerge from hiding after thousands of years to protect Earth from their ancient counterparts, the Deviants.", "ImagePath": "https://www.themoviedb.org/t/p/w1280/lFByFSLV5WDJEv3KabbdAF959F2.jpg", "Heroes": ["Sersi", "Thena", "Kingo", "Druig", "Makkari", "Sprite", "Phastos", "Gilgamesh"], "Villain": "The Celestials and Ikaris" },
+        { "_id": "64aebdf6eeb6443958c2debf", "Genre": { "Name": "Marvel Phase Three", "Description": "Phase Three (2016 to 2019) is the first phase to: Include more than 6 films, 11 films in total, which makes the phase have the most films in it so far. Have two Avengers films (Avengers: Infinity War and Avengers: Endgame), two Spider-Man films (Spider-Man: Homecoming and Spider-Man: Far From Home), and no Iron Man solo films." }, "Director": { "Name": "Anthony and Joe Russo", "Bio": "Anthony J. Russo is an American filmmaker and producer who works alongside his brother Joseph Russo. They have directed You, Me and Dupree, Cherry and the Marvel films Captain America: The Winter Soldier, Captain America: Civil War, Avengers: Infinity War and Avengers: Endgame." }, "Actors": [], "Title": "Avengers: Endgame", "Description": "Set after Thanos' catastrophic use of the Infinity Stones randomly wiped out half of Earth's population in Avengers: Infinity War. Those left behind are desperate to do something -- anything -- to bring back their lost loved ones.", "ImagePath": "https://www.themoviedb.org/t/p/w1280/or06FN3Dka5tukK1e9sl16pB3iy.jpg", "Heroes": ["Iron Man", "Captain America", "Hulk", "Hawkeye", "War Machine", "Falcon", "Scarlet Witch", "Spider Man", "Bucky Barns", "Ant Man", "Captain Marvel", "Valkyrie", "Korg", "Pepper Potts", "Wasp", "star Lord", "Gamora", "Drax", "Groot", "Rocket Racoon", "Mantis", "Nebula", "Black Panther", "Doctor Strange", "Wong"], "Villain": "Thanos and his forces including Corvus Glaive, Proxima Midnight, Ebony Maw, Cull Obsidian, The Chitauri, Leviathans, Outriders, Chitauri Gorillas" }
+    ]);
+
+    const [selectedMovie, setSelectedMovie] = useState(null);
+    if (selectedMovie) {
+        return (<MovieView movie={selectedMovie} onBackClick={() =>
+            setSelectedMovie(null)} />
+        );
+    }
+    if (movies.length === 0) {
+        return <div>This list is empty.</div>;
+    }
+    return (
+        <div>
+            {movies.map((movie) => (
+                <MovieCard
+                    key={movie.id}
+                    movie={movie}
+                    onMovieClick={(newSelectedMovie) => {
+                        setSelectedMovie(newSelectedMovie);
+                    }}
+                />
+            ))}
+            <span>testing</span>
+        </div>
+    );
+};
