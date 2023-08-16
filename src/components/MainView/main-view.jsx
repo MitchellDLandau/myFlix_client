@@ -9,16 +9,16 @@ export const MainView = () => {
         fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com")
             .then((response) = response.json())
             .then((data) => {
-                const movieFromApi = data.docs.map((doc) => {
+                const movieFromApi = data.map((movie) => {
                     return {
-                        _id: doc._id,
-                        Title: doc.Title,
-                        Description: doc.Description,
-                        ImagePath: doc.ImagePath,
-                        Director: doc.Director,
-                        Genre: doc.Genre,
-                        Heroes: doc.Heroes,
-                        Villain: doc.Villain
+                        _id: movie._id,
+                        Title: movie.Title,
+                        Description: movie.Description,
+                        ImagePath: movie.ImagePath,
+                        Director: movie.Director,
+                        Genre: movie.Genre,
+                        Heroes: movie.Heroes,
+                        Villain: movie.Villain
                     };
                 });
                 setMovie(movieFromApi);
