@@ -27171,37 +27171,38 @@ var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
     const [movies, setMovie] = (0, _react.useState)([]);
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     useEffect(()=>{
-        fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com").then(response = response.json()).then((data)=>{
-            const movieFromApi = data.map((movie)=>{
-                return {
-                    _id: movie._id,
-                    Title: movie.Title,
-                    Description: movie.Description,
-                    ImagePath: movie.ImagePath,
-                    Director: movie.Director,
-                    Genre: movie.Genre,
-                    Heroes: movie.Heroes,
-                    Villain: movie.Villain
-                };
-            });
-            setMovie(movieFromApi);
+        fetch("https://openlibrary.org/search.json?q=star+wars").then(response = response.json()).then((data)=>{
+            console.log("movies from api", data);
+        // const moviesFromApi = data.map((movie) => {
+        //     return {
+        //         _id: movie._id,
+        //         Title: movie.Title,
+        //         Description: movie.Description,
+        //         ImagePath: movie.ImagePath,
+        //         Director: movie.Director,
+        //         Genre: movie.Genre,
+        //         Heroes: movie.Heroes,
+        //         Villain: movie.Villain
+        //     };
+        // });
+        // setMovie(moviesFromApi);
         });
     }, []);
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/MainView/main-view.jsx",
-        lineNumber: 30,
-        columnNumber: 17
+        lineNumber: 33,
+        columnNumber: 13
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "This list is empty."
     }, void 0, false, {
         fileName: "src/components/MainView/main-view.jsx",
-        lineNumber: 35,
+        lineNumber: 38,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27213,24 +27214,24 @@ const MainView = ()=>{
                     }
                 }, movie._id, false, {
                     fileName: "src/components/MainView/main-view.jsx",
-                    lineNumber: 40,
+                    lineNumber: 43,
                     columnNumber: 17
                 }, undefined)),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                 children: "testing"
             }, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 48,
+                lineNumber: 51,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/MainView/main-view.jsx",
-        lineNumber: 38,
+        lineNumber: 41,
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "xr9PXABO5Wc2gfmNHEYAjIWKIAo=");
+_s(MainView, "+wymq0Nl2UOMia6TFF/0xC4UkRk=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");

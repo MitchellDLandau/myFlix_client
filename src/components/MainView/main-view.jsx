@@ -1,15 +1,20 @@
 import { useState } from "react"
+import { useEffect, useState } from "react";
 import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
+
 
 export const MainView = () => {
     const [movies, setMovie] = useState([]);
 
+    const [selectedMovie, setSelectedMovie] = useState(null);
+
     useEffect(() => {
-        fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com")
-            .then((response) = response.json())
+        fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/movies")
+            .then((response) => response.json())
             .then((data) => {
-                const movieFromApi = data.map((movie) => {
+                console.log('movies from api', data)
+                const moviesFromApi = data.map((movie) => {
                     return {
                         _id: movie._id,
                         Title: movie.Title,
@@ -21,14 +26,14 @@ export const MainView = () => {
                         Villain: movie.Villain
                     };
                 });
-                setMovie(movieFromApi);
+                setMovie(moviesFromApi);
             });
     }, []);
 
-    const [selectedMovie, setSelectedMovie] = useState(null);
     if (selectedMovie) {
-        return (<MovieView movie={selectedMovie} onBackClick={() =>
-            setSelectedMovie(null)} />
+        return (
+            <MovieView movie={selectedMovie} onBackClick={() =>
+                setSelectedMovie(null)} />
         );
     }
     if (movies.length === 0) {
