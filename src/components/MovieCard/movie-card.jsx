@@ -18,6 +18,7 @@ MovieCard.propTypes = {
         Description: PropTypes.string.isRequired,
         ImagePath: PropTypes.string.isRequired,
         Director: PropTypes.object,
+        DirectorDescription: PropTypes.string,
         Genre: PropTypes.object,
         Heroes: PropTypes.array,
         Villain: PropTypes.string,

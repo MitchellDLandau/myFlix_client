@@ -1,3 +1,5 @@
+import { HeroCard } from "../HeroCard/hero-card";
+
 export const MovieView = ({ movie, onBackClick }) => {
     return (
         <div>
@@ -23,6 +25,19 @@ export const MovieView = ({ movie, onBackClick }) => {
             <div>
                 <span>Heroes: </span>
                 <span>{movie.Heroes.join(', ')}</span>
+                <div>
+                    {/* <HeroCard />
+                    {const movie = movie}
+                    {movie.map((movie) => (
+                        <HeroCard
+                            key={movie._id}
+                            movie={movie}
+                            onHeroClick={(newSelectedHero) => {
+                                setSelectedHero(newSelectedHero);
+                            }}
+                        />
+                    ))} */}
+                </div>
             </div>
             <div>
                 <span>Villain: </span>
