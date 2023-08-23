@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 
-export const HeroCard = ({ movie, onHeroClick }) => {
+export const HeroCard = ({ hero, onHeroClick }) => {
     return (
         <div
             onClick={() => {
-                onHeroClick(movie);
+                console.log(hero); //use the search component to to insert a clicked on hero and return their list of movies. 
             }}
         >
-            {movie.Heroes}
+            {hero}
         </div>
     );
 };

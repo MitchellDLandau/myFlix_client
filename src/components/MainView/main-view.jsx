@@ -1,47 +1,26 @@
-import { useState } from "react"
 import { useEffect, useState } from "react";
 import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
+import { SignupView } from "../SignupView/signup-view";
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
-    const [movies, setMovie] = useState([]);
+    const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
 
-
     useEffect(() => {
-        if (!token)
-            return;
+        if (!token) return;
 
         fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => response.json())
-            .then((movies) => {
-                setMovies(movies);
-            });
-    }, [token]);
-
-    if (!user) {
-        return (
-            <LoginView
-                onLoggedIn={(user, token) => {
-                    setUser(user);
-                    setToken(token);
-                }}
-            />
-        );
-    }
-
-    useEffect(() => {
-        fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/movies")
-            .then((response) => response.json())
             .then((data) => {
-                console.log('movies from api', data)
+                console.log('movies from api:', data)
                 const moviesFromApi = data.map((movie) => {
                     return {
                         _id: movie._id,
@@ -54,9 +33,24 @@ export const MainView = () => {
                         Villain: movie.Villain
                     };
                 });
-                setMovie(moviesFromApi);
+                setMovies(moviesFromApi);
             });
-    }, []);
+    }, [token]);
+
+    if (!user) {
+        return (
+            <>
+                Login to your account.
+                <LoginView
+                    onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                    }} />
+                Signup for an account bellow.
+                <SignupView />
+            </>
+        );
+    }
 
     if (selectedMovie) {
         return (
@@ -83,6 +77,4 @@ export const MainView = () => {
             }}>Logout</button>
         </div>
     );
-    // <button onClick={() => {setUser(null); setToken(null);
-    // }}>Logout</button>
 };

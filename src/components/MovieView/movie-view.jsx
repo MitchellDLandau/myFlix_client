@@ -1,4 +1,7 @@
 import { HeroCard } from "../HeroCard/hero-card";
+import { useState } from "react";
+
+// const [selectedHero, setSelectedHero] = useState(null);
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
@@ -23,20 +26,19 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span>{movie.Director.Name}</span>
             </div>
             <div>
-                <span>Heroes: </span>
-                <span>{movie.Heroes.join(', ')}</span>
+                {/* <span>Heroes: </span>
+                <span>{movie.Heroes.join(', ')}</span> */}
                 <div>
-                    {/* <HeroCard />
-                    {const movie = movie}
-                    {movie.map((movie) => (
+                    Heroes:
+                    {movie.Heroes.map((hero) => (
                         <HeroCard
                             key={movie._id}
-                            movie={movie}
-                            onHeroClick={(newSelectedHero) => {
-                                setSelectedHero(newSelectedHero);
-                            }}
+                            hero={hero}
+                        // onHeroClick={(newSelectedHero) => {
+                        //     setSelectedHero(newSelectedHero);
+                        // }}
                         />
-                    ))} */}
+                    ))}
                 </div>
             </div>
             <div>
