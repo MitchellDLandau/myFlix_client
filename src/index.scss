@@ -3,3 +3,9 @@ $color: steelblue;
 .my-flix {
     color: $color;
 }
+
+.Button {
+    margin-bottom: 50px;
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
