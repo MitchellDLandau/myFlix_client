@@ -1,6 +1,4 @@
-import PropTypes from "prop-types";
-
-export const HeroCard = ({ hero, onHeroClick }) => {
+export const HeroCard = ({ hero }) => { //previously thought about haveing ({ hero, onHeroClick}) may be used in future. 
     return (
         <div
             onClick={() => {

@@ -13186,14 +13186,6 @@ textarea.form-control-lg {
   background: #fd8;
 }
 
-.movieBody {
-  background: #fd8;
-}
-
-.Title {
-  margin: 3%;
-}
-
 .logout {
   margin-bottom: 2%;
 }
@@ -13219,6 +13211,14 @@ body {
 
 .LeftImg {
   transform: rotate(270deg)translate3d(-60%, 0, 0);
+}
+
+.movieBody {
+  background: #fd8;
+}
+
+.Title {
+  margin: 3%;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

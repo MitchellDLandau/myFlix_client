@@ -25,7 +25,7 @@ export const MainView = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log('movies from api:', data)
+                // console.log('movies from api:', data)
                 const moviesFromApi = data.map((movie) => {
                     return {
                         _id: movie._id,
@@ -75,8 +75,11 @@ export const MainView = () => {
             ) : (
                 <>
                     <h1 className="titlescreen">Marvel Movie Mapper</h1>
+                    <Button className="mb-4 logout" onClick={() => {
+                        setUser(null); setToken(null); localStorage.clear();
+                    }}>Logout</Button>
                     {movies.map((movie) => (
-                        <Col className="mb-4" key={movie.id} md={3}>
+                        <Col className="mb-4" key={movie._id} md={3}>
                             <MovieCard
                                 movie={movie}
                                 onMovieClick={(newSelectedMovie) => {
@@ -85,9 +88,7 @@ export const MainView = () => {
                             />
                         </Col>
                     ))}
-                    <Button className="mb-4 logout" onClick={() => {
-                        setUser(null); setToken(null); localStorage.clear();
-                    }}>Logout</Button>
+
                 </>
             )}
         </Row>
