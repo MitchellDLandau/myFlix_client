@@ -1,25 +1,37 @@
 import { HeroCard } from "../HeroCard/hero-card";
+import { useParams } from "react-router";
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./movie-view.scss";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+    const { movieID } = useParams();
+
+    const mover = movies.find((m) => `:${m._id}` === movieID);
+
+    if (!mover) {
+        return <div>Movie was not found</div>;
+    }
+
     return (
         <Card className="h-100 movieBody">
-            <Card.Title className="Title">{movie.Title}</Card.Title>
-            <Card.Img variant="top" src={movie.ImagePath} />
+            <Card.Title className="Title">{mover.Title}</Card.Title>
+            <Card.Img variant="top" src={mover.ImagePath} />
             <Card.Body>
-                <Card.Text>Descriprion: {movie.Description}</Card.Text>
-                <Card.Text>Directed by: {movie.Director.Name}</Card.Text>
+                <Card.Text>Descriprion: {mover.Description}</Card.Text>
+                <Card.Text>Directed by: {mover.Director.Name}</Card.Text>
                 <Card.Text>
                     Heroes:
-                    {movie.Heroes.map((hero) => (
+                    {mover.Heroes.map((hero) => (
                         <HeroCard
                             hero={hero} />
                     ))}
                 </Card.Text>
-                <Card.Text>Villain: {movie.Villain}</Card.Text>
-                <Card.Text>{movie.Genre.Name}</Card.Text>
-                <Button className="mb-4" onClick={onBackClick}>Back</Button>
+                <Card.Text>Villain: {mover.Villain}</Card.Text>
+                <Card.Text>{mover.Genre.Name}</Card.Text>
+                <Link to={`/`}>
+                    <Button className="back-button">Back</Button>
+                </Link>
             </Card.Body>
         </Card>
     );
