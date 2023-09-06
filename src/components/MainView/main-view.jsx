@@ -4,6 +4,8 @@ import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
 import { SignupView } from "../SignupView/signup-view";
 import { NavigationBar } from "../NavigationBar/navigation-bar";
+import { ProfileView } from "../ProfileView/profile-view";
+// import { ProfileView } from "../ProfileView/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -83,6 +85,7 @@ export const MainView = () => {
                             </>
                         }
                     />
+
                     <Route
                         path="/movies/:movieID"
                         element={
@@ -93,12 +96,13 @@ export const MainView = () => {
                                     <Col>The list is empty.</Col>
                                 ) : (
                                     <Col md={8}>
-                                        <MovieView movies={movies} />
+                                        <MovieView movies={movies} user={user} token={token} />
                                     </Col>
                                 )}
                             </>
                         }
                     />
+
                     <Route
                         path="/"
                         element={
@@ -120,6 +124,26 @@ export const MainView = () => {
                             </>
                         }
                     />
+                    <Route
+                        path="/profile"
+                        element={
+                            <>
+                                {!user ? (
+                                    <Navigate to="/login" replace />
+                                ) : (
+                                    <>
+                                        <Col className="mb-4" md="3">
+                                            <ProfileView user={user} token={token} movies={movies} />
+                                        </Col>
+                                    </>
+                                )
+                                }
+                            </>
+                        }
+                    />
+
+                    {/* add route for the profile view. */}
+
                 </Routes>
             </Row>
         </BrowserRouter>

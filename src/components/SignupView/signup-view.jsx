@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+// import { Link, Button, Form } from "react-router-dom";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -25,10 +26,10 @@ export const SignupView = () => {
         })
             .then((response) => {
                 if (response.ok) {
-                    alert("Signup Successful");
+                    alert("Signup Successful.");
                     window.location.reload();
                 } else {
-                    alert("Signup failed");
+                    alert("Signup failed.");
                 }
             });
     };
@@ -79,4 +80,4 @@ export const SignupView = () => {
             <Button variant="primary" type="submit">Submit</Button>
         </Form>
     );
-}
+};
