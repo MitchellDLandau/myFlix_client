@@ -3,17 +3,34 @@ import { Card, Button, Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../MovieCard/movie-card";
 
-export const ProfileView = ({ user, movies, token, updateUser }) => {
+export const ProfileView = ({ user, movies, token }) => {
 
     const [username, setUsername] = useState(user.Username);
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState(user.Email);
-    const [birthday, setBirthday] = useState(user.birthday);
+    const [birthday, setBirthday] = useState(user.Birthday);
     const favoriteMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
-    console.log(user)
 
     // handleShow = () => { setShow(true) };
     // handleHide = () => { setShow(false) };
+
+    const updateUser = () => {
+
+        fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/users/" + user._id, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Login response: ", data);
+                const dataString = JSON.stringify(data);
+                localStorage.setItem("user", dataString);
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error("Error while fetching data:", error);
+            });
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -33,27 +50,23 @@ export const ProfileView = ({ user, movies, token, updateUser }) => {
             .then((response) => response.json())
             .then((res) => {
                 if (res) {
-                    localStorage.setItem("user", JSON.stringify(user));
-                    localStorage.setItem("token", res.token);
-                    alert("Account has been updated");
-                    window.location.reload();
+                    updateUser();
+                    alert("Account has been updated.");
                 } else {
-                    alert("Update failed");
+                    alert("Update failed.");
                 }
 
             });
-        // window.location.reload();
     }
 
     deleteUser = () => {
-        console.log(user)
         fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/users/" + user._id, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
                 if (response.ok) {
-                    return  //adjust to how the api responds? Working fine now without api response being used
+                    return
                 }
             })
             .then(() => {
@@ -66,26 +79,25 @@ export const ProfileView = ({ user, movies, token, updateUser }) => {
     if (user) {
         return (
             <>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center" key={user._id}>
                     <Col>
                         <Card>
                             <Card.Title>Profile</Card.Title>
                             <Card.Text>Username: {user.Username}</Card.Text>
                             <Card.Text>Eamil: {user.Email}</Card.Text>
                             <Card.Text>Birthday: {user.Birthday}</Card.Text>
-                            {/* <Card.Text>favorite:{user.FavoriteMovies.stringify}</Card.Text> */}
                             {/* <Button variant="primary" onClick={handleShow}>Update profile</Button> */}
-                            <Button variant="primary" onClick={deleteUser}>Delete account</Button>
+                            <Button variant="primary" onClick={deleteUser} >Delete account</Button>
                         </Card>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col>
-                        {/* {favoriteMovies.map((movies) => (
-                            <Col>
-                                <MovieCard movies={movies} user={user} token={token} />
+                        {favoriteMovies.map((movie) => (
+                            <Col key={movie.Title}>
+                                <MovieCard movie={movie} />
                             </Col>
-                        ))} */}
+                        ))}
                     </Col>
                 </Row>
 
@@ -132,10 +144,10 @@ export const ProfileView = ({ user, movies, token, updateUser }) => {
                         />
                     </Form.Group>
                     <Button variant="primary" type="submit">Submit</Button>
-                </Form>
+                </Form >
             </>
 
         )
     };
 };
-// };
+

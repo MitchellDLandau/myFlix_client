@@ -27,7 +27,7 @@ export const SignupView = () => {
             .then((response) => {
                 if (response.ok) {
                     alert("Signup Successful.");
-                    window.location.reload();
+                    window.location.reload();//add route to login page instead of staying on login.
                 } else {
                     alert("Signup failed.");
                 }
