@@ -13221,4 +13221,8 @@ body {
   margin: 3%;
 }
 
+.active {
+  display: none;
+}
+
 /*# sourceMappingURL=index.ce1d6491.css.map */

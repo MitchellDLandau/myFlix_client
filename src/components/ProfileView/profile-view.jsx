@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Card, Button, Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../MovieCard/movie-card";
+import { NewMovie } from "../NewMovie/new-movie";
+import "./profile-view.scss";
 
 export const ProfileView = ({ user, movies, token }) => {
 
@@ -9,10 +11,8 @@ export const ProfileView = ({ user, movies, token }) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState(user.Email);
     const [birthday, setBirthday] = useState(user.Birthday);
+    const [isActive, setActive] = useState(false);
     const favoriteMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
-
-    // handleShow = () => { setShow(true) };
-    // handleHide = () => { setShow(false) };
 
     const updateUser = () => {
 
@@ -76,18 +76,21 @@ export const ProfileView = ({ user, movies, token }) => {
             })
     }
 
+    const toggleClass = () => {
+        setActive(!isActive);
+        console.log(isActive)
+    }
+
     if (user) {
         return (
             <>
-                <Row className="justify-content-md-center" key={user._id}>
+                <Row className="justify-content-md-center">
                     <Col>
                         <Card>
                             <Card.Title>Profile</Card.Title>
                             <Card.Text>Username: {user.Username}</Card.Text>
                             <Card.Text>Eamil: {user.Email}</Card.Text>
                             <Card.Text>Birthday: {user.Birthday}</Card.Text>
-                            {/* <Button variant="primary" onClick={handleShow}>Update profile</Button> */}
-                            <Button variant="primary" onClick={deleteUser} >Delete account</Button>
                         </Card>
                     </Col>
                 </Row>
@@ -98,10 +101,12 @@ export const ProfileView = ({ user, movies, token }) => {
                                 <MovieCard movie={movie} />
                             </Col>
                         ))}
+                        <Button variant="primary" onClick={toggleClass}>Update profile</Button>
+                        <Button variant="primary" onClick={deleteUser} >Delete account</Button>
                     </Col>
                 </Row>
 
-                <Form onSubmit={handleSubmit}>
+                <Form className={`${isActive ? '' : 'active'}`} onSubmit={handleSubmit}>
                     <Form.Group controlId="editFormUsername">
                         <Form.Label>Username:</Form.Label>
                         <Form.Control
@@ -145,9 +150,24 @@ export const ProfileView = ({ user, movies, token }) => {
                     </Form.Group>
                     <Button variant="primary" type="submit">Submit</Button>
                 </Form >
+                <Form.Group>
+                    {user.Fork === "spoon" && <NewMovie user={user} token={token} />}
+                </Form.Group>
             </>
 
         )
-    };
+    }
+    console.log(user)
+    if (user) {
+        return (
+            <>
+                <Button>Special Button</Button>
+                <NewMovie user={user} token={token} />
+                <Button>testing</Button>
+            </>
+        )
+    }
+    return null;
+
 };
 
