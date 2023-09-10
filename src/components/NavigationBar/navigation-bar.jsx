@@ -1,11 +1,12 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./navigation-bar.scss"
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
 
     return (
-        <Navbar bg="light" expand="lg">
-            <Container>
+        <Navbar expand="lg">
+            <Container className="nav">
                 <Navbar.Brand as={Link} to="/">
                     Marvel Movie Mapper
                 </Navbar.Brand>

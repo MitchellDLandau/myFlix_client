@@ -1,63 +1,18 @@
 import { useEffect, useState } from "react";
-import { Card, Button, Row, Col, Form } from "react-bootstrap";
+import { Card, Button, Row, Col, Form, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../MovieCard/movie-card";
 import { NewMovie } from "../NewMovie/new-movie";
+import { UpdateUser } from "./update-user";
 import "./profile-view.scss";
+
 
 export const ProfileView = ({ user, movies, token }) => {
 
-    const [username, setUsername] = useState(user.Username);
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState(user.Email);
-    const [birthday, setBirthday] = useState(user.Birthday);
     const [isActive, setActive] = useState(false);
+    const [newActive, setNewActive] = useState(false);
+    const [confirm, setConfirm] = useState(false);
     const favoriteMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
-
-    const updateUser = () => {
-
-        fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/users/" + user._id, {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Login response: ", data);
-                const dataString = JSON.stringify(data);
-                localStorage.setItem("user", dataString);
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.error("Error while fetching data:", error);
-            });
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        const data = {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
-        };
-
-        fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/users/" + user._id, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-            body: JSON.stringify(data),
-        })
-            .then((response) => response.json())
-            .then((res) => {
-                if (res) {
-                    updateUser();
-                    alert("Account has been updated.");
-                } else {
-                    alert("Update failed.");
-                }
-
-            });
-    }
 
     deleteUser = () => {
         fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/users/" + user._id, {
@@ -76,98 +31,65 @@ export const ProfileView = ({ user, movies, token }) => {
             })
     }
 
+    const confirmDelete = () => {
+        setConfirm(!confirm);
+    }
+
     const toggleClass = () => {
         setActive(!isActive);
-        console.log(isActive)
+    }
+
+    const toggleMovieClass = () => {
+        setNewActive(!newActive);
     }
 
     if (user) {
         return (
-            <>
+            <Container>
                 <Row className="justify-content-md-center">
-                    <Col>
-                        <Card>
-                            <Card.Title>Profile</Card.Title>
-                            <Card.Text>Username: {user.Username}</Card.Text>
-                            <Card.Text>Eamil: {user.Email}</Card.Text>
-                            <Card.Text>Birthday: {user.Birthday}</Card.Text>
+                    <Col xs={12} sm={6}>
+                        <Card className="cards">
+                            <Card.Body>
+                                <Card.Title>Profile</Card.Title>
+                                <Card.Text>Name: {user.Username}</Card.Text>
+                                <Card.Text>E-mail: {user.Email}</Card.Text>
+                                <Card.Text>Birthday: {user.Birthday}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col xs={12} sm={6}>
+                        <Card className="cards">
+                            <Card.Body>
+                                <Card.Title>Edit account</Card.Title>
+                                <Button variant="primary" onClick={toggleClass}>Update profile</Button>
+                                <Form.Group className={`${isActive ? '' : 'active'}`} >
+                                    <UpdateUser user={user} token={token} />
+                                </Form.Group >
+                                {user.Fork === "spoon" &&
+                                    <Button variant="primary" onClick={toggleMovieClass}>Add a movie</Button>}
+                                <Form.Group className={`${newActive ? '' : 'newMovieActive'}`}>
+                                    {user.Fork === "spoon" && <NewMovie user={user} token={token} />}
+                                </Form.Group>
+                                <Button variant="primary" onClick={deleteUser} className={`${confirm ? '' : 'confirmDelete'}`}>Confirm delete account</Button>
+                                <Button variant="primary" onClick={confirmDelete} className={`${confirm ? 'confirmDelete' : ''}`}>Delete account</Button>
+                            </Card.Body>
                         </Card>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
-                    <Col>
+                <Card className="cards">
+                    <Row>
+                        <h1>Favorite Movies</h1>
+                    </Row>
+
+                    <Row>
                         {favoriteMovies.map((movie) => (
-                            <Col key={movie.Title}>
+                            <Col xs={12} sm={6} md={4} lg={3} xl={3} className="mb-4 favorite-card" key={movie._id} >
                                 <MovieCard movie={movie} />
                             </Col>
                         ))}
-                        <Button variant="primary" onClick={toggleClass}>Update profile</Button>
-                        <Button variant="primary" onClick={deleteUser} >Delete account</Button>
-                    </Col>
-                </Row>
-
-                <Form className={`${isActive ? '' : 'active'}`} onSubmit={handleSubmit}>
-                    <Form.Group controlId="editFormUsername">
-                        <Form.Label>Username:</Form.Label>
-                        <Form.Control
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                            minLength="6"
-                        />
-                    </Form.Group>
-
-                    <Form.Group controlId="editFormPassword">
-                        <Form.Label>Password:</Form.Label>
-                        <Form.Control
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            minLength="6"
-                        />
-                    </Form.Group>
-
-                    <Form.Group controlId="editFormEmail">
-                        <Form.Label>Email:</Form.Label>
-                        <Form.Control
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </Form.Group>
-
-                    <Form.Group controlId="editFormBirthday">
-                        <Form.Label>Birthday:</Form.Label>
-                        <Form.Control
-                            type="date"
-                            value={birthday}
-                            onChange={(e) => setBirthday(e.target.value)}
-                            required
-                        />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">Submit</Button>
-                </Form >
-                <Form.Group>
-                    {user.Fork === "spoon" && <NewMovie user={user} token={token} />}
-                </Form.Group>
-            </>
-
+                    </Row>
+                </Card>
+            </Container>
         )
-    }
-    console.log(user)
-    if (user) {
-        return (
-            <>
-                <Button>Special Button</Button>
-                <NewMovie user={user} token={token} />
-                <Button>testing</Button>
-            </>
-        )
-    }
-    return null;
-
+    };
 };
-
