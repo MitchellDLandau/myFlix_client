@@ -13221,4 +13221,26 @@ body {
   margin: 3%;
 }
 
+.nav {
+  background-color: #fd8;
+}
+
+.active, .newMovieActive, .confirmDelete {
+  display: none;
+}
+
+.cards {
+  background-color: #fd8;
+  margin: 2%;
+}
+
+.favorite-card {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+Button {
+  margin: 2%;
+}
+
 /*# sourceMappingURL=index.ce1d6491.css.map */
