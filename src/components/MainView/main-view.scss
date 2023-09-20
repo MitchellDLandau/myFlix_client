@@ -13,20 +13,3 @@ Button {
 body {
     background: rgb(243, 53, 53);
 }
-
-.titlescreen {
-    color: black;
-    font-style: bold;
-    display: flex;
-    justify-content: center;
-}
-
-.RightImg {
-    transform: rotate(90deg);
-    translate: 60%
-}
-
-.LeftImg {
-    transform: rotate(270deg);
-    translate: -60%
-}

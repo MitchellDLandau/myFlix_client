@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Card, Button, Row, Col, Form, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { MovieCard } from "../MovieCard/movie-card";
 import { NewMovie } from "../NewMovie/new-movie";
 import { UpdateUser } from "./update-user";

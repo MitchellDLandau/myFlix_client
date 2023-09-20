@@ -35,7 +35,6 @@ export const MovieView = ({ movies, user, token }) => {
             .then((response) => response.json())
             .then((res) => {
                 if (res) {
-                    alert(`${mover.Title} was added to your favorites.`);
                     updateUser();
                 } else {
                     alert("Movie did not post");
@@ -51,7 +50,6 @@ export const MovieView = ({ movies, user, token }) => {
         })
             .then((res) => {
                 if (res) {
-                    alert(`${mover.Title} was removed from your favorites.`);
                     updateUser();
                 } else {
                     alert("Movie was not removed");
@@ -70,17 +68,20 @@ export const MovieView = ({ movies, user, token }) => {
             <Card.Body>
                 <Card.Text>Descriprion: {mover.Description}</Card.Text>
                 <Card.Text>Directed by: {mover.Director.Name}</Card.Text>
+
+                <Card.Text>Villain: {mover.Villain}</Card.Text>
+                <Card.Text>{mover.Genre.Name}</Card.Text>
                 <Card.Text >
                     Heroes:
                     {mover.Heroes.map((hero) => (
                         <HeroCard
-                            hero={hero} key={hero} />
+                            hero={hero} movies={movies} key={hero} />
                     ))}
                 </Card.Text>
-                <Card.Text>Villain: {mover.Villain}</Card.Text>
-                <Card.Text>{mover.Genre.Name}</Card.Text>
                 <Link to={`/`}>
                     <Button className="back-button">Back</Button>
+                </Link>
+                <Link to={`/profile`}>
                     <Button variant="primary" onClick={favorites}>Add to favorites</Button>
                     <Button variant="primary" onClick={removeFavorite}>Remove from favorites</Button>
                 </Link>

@@ -7,15 +7,17 @@ import "./movie-card.scss";
 export const MovieCard = ({ movie }) => {
 
     return (
-        <Card className="h-100 cardBody" >
-            <Card.Img variant="top" src={movie.ImagePath} />
-            <Card.Body>
-                <Card.Title>{movie.Title}</Card.Title>
-                <Link to={`/movies/:${encodeURIComponent(movie._id)}`}>
-                    <Button variant="link">Open</Button>
-                </Link>
-            </Card.Body>
-        </Card>
+        <>
+            <Card className="h-100 cardBody" >
+                <Card.Img variant="top" src={movie.ImagePath} />
+                <Card.Body>
+                    <Card.Title>{movie.Title}</Card.Title>
+                    <Link to={`/movies/:${encodeURIComponent(movie._id)}`}>
+                        <Button variant="link">Open</Button>
+                    </Link>
+                </Card.Body>
+            </Card>
+        </>
     );
 };
 

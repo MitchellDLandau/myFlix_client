@@ -13182,8 +13182,12 @@ textarea.form-control-lg {
   }
 }
 
-.cardBody {
-  background: #fd8;
+.login-card {
+  padding: 5%;
+}
+
+.signup-card {
+  padding: 5%;
 }
 
 .logout {
@@ -13198,19 +13202,26 @@ body {
   background: #f33535;
 }
 
-.titlescreen {
-  color: #000;
-  font-style: bold;
-  justify-content: center;
+.cardBody {
+  background: #fd8;
+  margin-top: 2%;
+}
+
+.card {
+  background-color: #fd8;
+  margin-top: 2%;
+}
+
+.search-card {
+  text-align: center;
+  flex-wrap: wrap;
   display: flex;
 }
 
-.RightImg {
-  transform: rotate(90deg)translate3d(60%, 0, 0);
-}
-
-.LeftImg {
-  transform: rotate(270deg)translate3d(-60%, 0, 0);
+.hero-link {
+  cursor: pointer;
+  color: #00f;
+  text-decoration: underline;
 }
 
 .movieBody {
@@ -13223,6 +13234,15 @@ body {
 
 .nav {
   background-color: #fd8;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-nav-bar {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .active, .newMovieActive, .confirmDelete {

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { MovieCard } from "../MovieCard/movie-card";
+// import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
 import { SignupView } from "../SignupView/signup-view";
 import { NavigationBar } from "../NavigationBar/navigation-bar";
 import { ProfileView } from "../ProfileView/profile-view";
-// import { ProfileView } from "../ProfileView/profile-view";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { SearchBar } from "../SearchBar/search-bar";
+import { Row, Col, Card } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./main-view.scss";
 
@@ -47,6 +46,7 @@ export const MainView = () => {
             <NavigationBar
                 user={user}
                 onLoggedOut={() => {
+                    localStorage.clear();
                     setUser(null);
                 }}
             />
@@ -113,11 +113,7 @@ export const MainView = () => {
                                     <Col>the list is empty.</Col>
                                 ) : (
                                     <>
-                                        {movies.map((movie) => (
-                                            <Col className="mb-4" key={movie._id} md="3">
-                                                <MovieCard movie={movie} />
-                                            </Col>
-                                        ))}
+                                        <SearchBar movies={movies} />
                                     </>
                                 )
                                 }
@@ -141,9 +137,6 @@ export const MainView = () => {
                             </>
                         }
                     />
-
-                    {/* add route for the profile view. */}
-
                 </Routes>
             </Row>
         </BrowserRouter>

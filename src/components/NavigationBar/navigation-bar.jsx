@@ -5,7 +5,7 @@ import "./navigation-bar.scss"
 export const NavigationBar = ({ user, onLoggedOut }) => {
 
     return (
-        <Navbar expand="lg">
+        <Navbar bg="light" expand="lg" className="custom-nav-bar">
             <Container className="nav">
                 <Navbar.Brand as={Link} to="/">
                     Marvel Movie Mapper

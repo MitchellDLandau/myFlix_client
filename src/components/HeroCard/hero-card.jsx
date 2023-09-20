@@ -1,11 +1,24 @@
-export const HeroCard = ({ hero }) => { //previously thought about haveing ({ hero, onHeroClick}) may be used in future. 
+import { useState } from "react";
+import { SearchBar } from "../SearchBar/search-bar";
+import "./hero-card.scss"
+
+export const HeroCard = ({ hero, movies }) => {
+    const [isSearchBarVisible, setSearchBarVisible] = useState(false);
+
     return (
-        <span
-            onClick={() => {
-                console.log(hero); //use the search component to to insert a clicked on hero and return their list of movies. 
-            }}
-        >
-            {hero}
-        </span>
+        <>
+
+            <span className="hero-link"
+                onClick={() => {
+                    setSearchBarVisible(true);
+                }}
+            >
+                {`${hero}, `}
+            </span>
+            {isSearchBarVisible && (
+                <SearchBar hero={hero} movies={movies} onClose={() => setSearchBarVisible(false)} />
+            )}
+
+        </>
     );
 };
