@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Form, Card } from "react-bootstrap";
 import "./signup-view.scss"
-// import { Link, Button, Form } from "react-router-dom";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -28,7 +27,7 @@ export const SignupView = () => {
             .then((response) => {
                 if (response.ok) {
                     alert("Signup Successful.");
-                    window.location.reload();//add route to login page instead of staying on login.
+                    window.location.reload();
                 } else {
                     alert("Signup failed.");
                 }

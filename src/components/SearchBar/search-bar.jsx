@@ -1,26 +1,34 @@
 import { useState, useEffect } from "react";
-import { Container, Button, Form, Row, Col, Card } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
+import { Container, Form, Row, Col, Card } from "react-bootstrap";
 import { MovieCard } from "../MovieCard/movie-card";
 import "./search-bar.scss";
 
-export const SearchBar = ({ movies, hero, onClose }) => {
+export const SearchBar = ({ movies }) => {
 
-    const [searchInput, setSearchInput] = useState("");
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const initialHero = queryParams.get("search");
+    const [searchInput, setSearchInput] = useState(initialHero || "");
 
     useEffect(() => {
-        if (hero) {
-            setSearchInput(hero);
+        if (initialHero) {
+            setSearchInput(initialHero);
         }
-    }, [hero]);
+    }, [initialHero]);
 
     const handleChange = (e) => {
-        e.preventDefault();
         setSearchInput(e.target.value);
     };
 
     const filteredMovies = movies.filter((movie) => {
-        return movie.Heroes.some((hero) =>
-            hero.toLowerCase().includes(searchInput.toLowerCase())
+        const multiSearchInput = searchInput.toLowerCase();
+        return (
+            movie.Heroes.some((hero) => hero.toLowerCase().includes(multiSearchInput) ||
+                movie.Title.toLowerCase().includes(multiSearchInput) ||
+                movie.Director.Name.toLowerCase().includes(multiSearchInput) ||
+                movie.Genre.Name.toLowerCase().includes(multiSearchInput)
+            )
         );
     });
 
@@ -29,13 +37,13 @@ export const SearchBar = ({ movies, hero, onClose }) => {
             <Row className="search-card justify-content-center">
                 <Col xs={1} sm={2} md={3} lg={4} xl={4}></Col>
                 <Col>
-                    <Card xs={10} sm={8} md={6} lg={4} xl={4}>
-                        <Card.Body className="logo-title">
+                    <Card className="search-bar">
+                        <Card.Body className="logo-title rounded">
                             <>
                                 <Form>
                                     <Form.Group>
                                         <Form.Label>
-                                            Search by Hero
+                                            Search by Hero, Title, Phase, or Director
                                         </Form.Label>
                                         <Form.Control
                                             className="hero-search-bar"
@@ -49,8 +57,6 @@ export const SearchBar = ({ movies, hero, onClose }) => {
                     </Card>
                 </Col>
                 <Col xs={1} sm={2} md={3} lg={4} xl={4}></Col>
-                {/* <Col xs={4} sm={4} md={4} lg={4} xl={4}>blank
-                    </Col> */}
             </Row>
             <Row>
                 {filteredMovies.map((movie) => (

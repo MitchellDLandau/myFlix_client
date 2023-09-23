@@ -8,6 +8,8 @@ export const MovieView = ({ movies, user, token }) => {
     const { movieID } = useParams();
     const mover = movies.find((m) => `:${m._id}` === movieID);
 
+    const isMovieInFavorites = user && user.FavoriteMovies.includes(mover._id)
+
     const updateUser = () => {
 
         fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/users/" + user._id, {
@@ -82,8 +84,11 @@ export const MovieView = ({ movies, user, token }) => {
                     <Button className="back-button">Back</Button>
                 </Link>
                 <Link to={`/profile`}>
-                    <Button variant="primary" onClick={favorites}>Add to favorites</Button>
-                    <Button variant="primary" onClick={removeFavorite}>Remove from favorites</Button>
+                    {isMovieInFavorites ? (
+                        <Button variant="primary" onClick={removeFavorite}>Remove from my favorites</Button>
+                    ) : (
+                        <Button variant="primary" onClick={favorites}>Add to my favorites</Button>
+                    )}
                 </Link>
             </Card.Body>
         </Card>

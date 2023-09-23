@@ -1,11 +1,3 @@
-.my-flix {
-  color: #4682b4;
-}
-
-.Button {
-  margin-bottom: 50px;
-}
-
 :root, [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -13183,18 +13175,18 @@ textarea.form-control-lg {
 }
 
 .login-card {
+  background: #fd8;
+  margin-top: 2%;
   padding: 5%;
 }
 
 .signup-card {
+  background: #fd8;
+  margin-top: 2%;
   padding: 5%;
 }
 
-.logout {
-  margin-bottom: 2%;
-}
-
-Button, .login {
+.login {
   margin-top: 3%;
 }
 
@@ -13202,14 +13194,77 @@ body {
   background: #f33535;
 }
 
-.cardBody {
-  background: #fd8;
-  margin-top: 2%;
+.movie-view-main {
+  margin-bottom: 5%;
 }
 
-.card {
-  background-color: #fd8;
+.hero-link {
+  cursor: pointer;
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+.movieBody {
+  color: #fff;
+  background: #444;
+  margin-top: 5%;
+  margin-bottom: -5%;
+}
+
+.Title {
+  margin: 3%;
+}
+
+.nav {
+  background: #fd8;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.custom-nav-bar {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f33535 !important;
+}
+
+.mapper-title, .nav-bar-options {
+  margin-left: 5%;
+}
+
+.logout-nav {
+  margin-bottom: 2%;
+}
+
+.movie-card-body {
+  color: #fff;
+  cursor: pointer;
+  background: #444;
   margin-top: 2%;
+  margin-bottom: -8%;
+}
+
+.movie-card-body .movie-title {
+  color: #fff;
+}
+
+.active, .newMovieActive, .confirmDelete {
+  display: none;
+}
+
+.favorite-card {
+  background-color: #fd8;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.profile-cards {
+  background: #fd8;
+  margin: 4% 0;
+}
+
+Button {
+  margin: 2%;
 }
 
 .search-card {
@@ -13218,49 +13273,17 @@ body {
   display: flex;
 }
 
-.hero-link {
-  cursor: pointer;
-  color: #00f;
-  text-decoration: underline;
+.logo-title {
+  color: #000;
 }
 
-.movieBody {
+.rounded {
   background: #fd8;
 }
 
-.Title {
-  margin: 3%;
-}
-
-.nav {
-  background-color: #fd8;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.custom-nav-bar {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.active, .newMovieActive, .confirmDelete {
-  display: none;
-}
-
-.cards {
-  background-color: #fd8;
-  margin: 2%;
-}
-
-.favorite-card {
-  padding-left: 2%;
-  padding-right: 2%;
-}
-
-Button {
-  margin: 2%;
+.search-bar {
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

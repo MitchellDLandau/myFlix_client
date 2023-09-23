@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-// import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
 import { SignupView } from "../SignupView/signup-view";
 import { NavigationBar } from "../NavigationBar/navigation-bar";
 import { ProfileView } from "../ProfileView/profile-view";
 import { SearchBar } from "../SearchBar/search-bar";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./main-view.scss";
 
@@ -95,7 +94,7 @@ export const MainView = () => {
                                 ) : movies.length === 0 ? (
                                     <Col>The list is empty.</Col>
                                 ) : (
-                                    <Col md={8}>
+                                    <Col md={8} className="movie-view-main">
                                         <MovieView movies={movies} user={user} token={token} />
                                     </Col>
                                 )}
@@ -115,8 +114,7 @@ export const MainView = () => {
                                     <>
                                         <SearchBar movies={movies} />
                                     </>
-                                )
-                                }
+                                )}
                             </>
                         }
                     />
@@ -132,8 +130,7 @@ export const MainView = () => {
                                             <ProfileView user={user} token={token} movies={movies} />
                                         </Col>
                                     </>
-                                )
-                                }
+                                )}
                             </>
                         }
                     />
