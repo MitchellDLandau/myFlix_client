@@ -24,10 +24,9 @@ export const SearchBar = ({ movies }) => {
     const filteredMovies = movies.filter((movie) => {
         const multiSearchInput = searchInput.toLowerCase();
         return (
-            movie.Heroes.some((hero) => hero.toLowerCase().includes(multiSearchInput) ||
-                movie.Title.toLowerCase().includes(multiSearchInput) ||
-                movie.Director.Name.toLowerCase().includes(multiSearchInput) ||
-                movie.Genre.Name.toLowerCase().includes(multiSearchInput)
+            movie.Heroes.some((hero) =>
+                hero.toLowerCase().includes(multiSearchInput) ||
+                movie.Title.toLowerCase().includes(multiSearchInput)
             )
         );
     });

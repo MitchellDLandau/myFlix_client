@@ -48316,7 +48316,7 @@ const SearchBar = ({ movies })=>{
     };
     const filteredMovies = movies.filter((movie)=>{
         const multiSearchInput = searchInput.toLowerCase();
-        return movie.Heroes.some((hero)=>hero.toLowerCase().includes(multiSearchInput) || movie.Title.toLowerCase().includes(multiSearchInput) || movie.Director.Name.toLowerCase().includes(multiSearchInput) || movie.Genre.Name.toLowerCase().includes(multiSearchInput));
+        return movie.Heroes.some((hero)=>hero.toLowerCase().includes(multiSearchInput) || movie.Title.toLowerCase().includes(multiSearchInput));
     });
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
         children: [
@@ -48331,7 +48331,7 @@ const SearchBar = ({ movies })=>{
                         xl: 4
                     }, void 0, false, {
                         fileName: "src/components/SearchBar/search-bar.jsx",
-                        lineNumber: 38,
+                        lineNumber: 37,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -48347,7 +48347,7 @@ const SearchBar = ({ movies })=>{
                                                     children: "Search by Hero, Title, Phase, or Director"
                                                 }, void 0, false, {
                                                     fileName: "src/components/SearchBar/search-bar.jsx",
-                                                    lineNumber: 45,
+                                                    lineNumber: 44,
                                                     columnNumber: 41
                                                 }, undefined),
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -48357,34 +48357,34 @@ const SearchBar = ({ movies })=>{
                                                     value: searchInput
                                                 }, void 0, false, {
                                                     fileName: "src/components/SearchBar/search-bar.jsx",
-                                                    lineNumber: 48,
+                                                    lineNumber: 47,
                                                     columnNumber: 41
                                                 }, undefined)
                                             ]
                                         }, void 0, true, {
                                             fileName: "src/components/SearchBar/search-bar.jsx",
-                                            lineNumber: 44,
+                                            lineNumber: 43,
                                             columnNumber: 37
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/SearchBar/search-bar.jsx",
-                                        lineNumber: 43,
+                                        lineNumber: 42,
                                         columnNumber: 33
                                     }, undefined)
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/SearchBar/search-bar.jsx",
-                                lineNumber: 41,
+                                lineNumber: 40,
                                 columnNumber: 25
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/SearchBar/search-bar.jsx",
-                            lineNumber: 40,
+                            lineNumber: 39,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/SearchBar/search-bar.jsx",
-                        lineNumber: 39,
+                        lineNumber: 38,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -48395,13 +48395,13 @@ const SearchBar = ({ movies })=>{
                         xl: 4
                     }, void 0, false, {
                         fileName: "src/components/SearchBar/search-bar.jsx",
-                        lineNumber: 59,
+                        lineNumber: 58,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/SearchBar/search-bar.jsx",
-                lineNumber: 37,
+                lineNumber: 36,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -48416,23 +48416,23 @@ const SearchBar = ({ movies })=>{
                             movie: movie
                         }, void 0, false, {
                             fileName: "src/components/SearchBar/search-bar.jsx",
-                            lineNumber: 64,
+                            lineNumber: 63,
                             columnNumber: 25
                         }, undefined)
                     }, movie._id, false, {
                         fileName: "src/components/SearchBar/search-bar.jsx",
-                        lineNumber: 63,
+                        lineNumber: 62,
                         columnNumber: 21
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/SearchBar/search-bar.jsx",
-                lineNumber: 61,
+                lineNumber: 60,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/SearchBar/search-bar.jsx",
-        lineNumber: 36,
+        lineNumber: 35,
         columnNumber: 9
     }, undefined);
 };
