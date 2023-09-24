@@ -3,9 +3,12 @@
     color: white;
     margin-top: 2%;
     margin-bottom: -8%;
-    cursor: pointer;
+    cursor: pointer
 }
 
-.movie-card-body .movie-title {
-    color: white;
+.movie-card-body {
+    &:hover {
+        border: .2rem solid white;
+        background: #5e5e5e
+    }
 }

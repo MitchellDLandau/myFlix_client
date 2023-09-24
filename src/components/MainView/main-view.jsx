@@ -92,7 +92,7 @@ export const MainView = () => {
                                 {!user ? (
                                     <Navigate to="/login" replace />
                                 ) : movies.length === 0 ? (
-                                    <Col>The list is empty.</Col>
+                                    <Col>Loading...</Col>
                                 ) : (
                                     <Col md={8} className="movie-view-main">
                                         <MovieView movies={movies} user={user} token={token} />

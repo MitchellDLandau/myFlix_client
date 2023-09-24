@@ -14,7 +14,7 @@ export const ProfileView = ({ user, movies, token }) => {
     const [confirm, setConfirm] = useState(false);
     const favoriteMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
 
-    deleteUser = () => {
+    const deleteUser = () => {
         fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/users/" + user._id, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` },

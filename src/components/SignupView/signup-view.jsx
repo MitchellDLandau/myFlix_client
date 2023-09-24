@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Form, Card } from "react-bootstrap";
-import "./signup-view.scss"
+import "./signup-view.scss";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -10,6 +10,7 @@ export const SignupView = () => {
     const [birthday, setBirthday] = useState("");
 
     const handleSubmit = (event) => {
+        const login = '/login';
         event.preventDefault();
 
         const data = {
@@ -27,7 +28,7 @@ export const SignupView = () => {
             .then((response) => {
                 if (response.ok) {
                     alert("Signup Successful.");
-                    window.location.reload();
+                    window.location.href = login;
                 } else {
                     alert("Signup failed.");
                 }

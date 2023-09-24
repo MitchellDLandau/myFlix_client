@@ -42,7 +42,7 @@ export const SearchBar = ({ movies }) => {
                                 <Form>
                                     <Form.Group>
                                         <Form.Label>
-                                            Search by Hero, Title, Phase, or Director
+                                            Search by Hero or Title
                                         </Form.Label>
                                         <Form.Control
                                             className="hero-search-bar"

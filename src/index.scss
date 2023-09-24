@@ -1,1 +1,16 @@
+$background: rgb(243, 53, 53);
+$nav-bar: #ffdd88;
+$movie-card: #444444;
+$movie-card-hover: #5e5e5e;
+$hero-link: #0D6EFD;
+
 @import '~bootstrap/scss/bootstrap.scss';
+@import './components/MainView/main-view.scss';
+@import './components/HeroCard/hero-card.scss';
+@import './components/LoginView/login-view.scss';
+@import './components/MovieCard/movie-card.scss';
+@import './components/MovieView/movie-view.scss';
+@import './components/NavigationBar/navigation-bar.scss';
+@import './components/ProfileView/profile-view.scss';
+@import './components/SearchBar/search-bar.scss';
+@import './components/SignupView/signup-view.scss';
