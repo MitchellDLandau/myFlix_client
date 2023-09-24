@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Card, Button, Row, Col, Form, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { MovieCard } from "../MovieCard/movie-card";
 import { NewMovie } from "../NewMovie/new-movie";
 import { UpdateUser } from "./update-user";
@@ -14,7 +14,7 @@ export const ProfileView = ({ user, movies, token }) => {
     const [confirm, setConfirm] = useState(false);
     const favoriteMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
 
-    deleteUser = () => {
+    const deleteUser = () => {
         fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/users/" + user._id, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` },
@@ -48,7 +48,7 @@ export const ProfileView = ({ user, movies, token }) => {
             <Container>
                 <Row className="justify-content-md-center">
                     <Col xs={12} sm={6}>
-                        <Card className="cards">
+                        <Card className="profile-cards">
                             <Card.Body>
                                 <Card.Title>Profile</Card.Title>
                                 <Card.Text>Name: {user.Username}</Card.Text>
@@ -58,7 +58,7 @@ export const ProfileView = ({ user, movies, token }) => {
                         </Card>
                     </Col>
                     <Col xs={12} sm={6}>
-                        <Card className="cards">
+                        <Card className="profile-cards">
                             <Card.Body>
                                 <Card.Title>Edit account</Card.Title>
                                 <Button variant="primary" onClick={toggleClass}>Update profile</Button>
@@ -76,14 +76,14 @@ export const ProfileView = ({ user, movies, token }) => {
                         </Card>
                     </Col>
                 </Row>
-                <Card className="cards">
+                <Card className="favorite-card">
                     <Row>
                         <h1>Favorite Movies</h1>
                     </Row>
 
                     <Row>
                         {favoriteMovies.map((movie) => (
-                            <Col xs={12} sm={6} md={4} lg={3} xl={3} className="mb-4 favorite-card" key={movie._id} >
+                            <Col xs={12} sm={6} md={4} lg={3} xl={3} className="mb-4 " key={movie._id} >
                                 <MovieCard movie={movie} />
                             </Col>
                         ))}

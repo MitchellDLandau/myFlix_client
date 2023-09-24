@@ -1,11 +1,11 @@
-export const HeroCard = ({ hero }) => { //previously thought about haveing ({ hero, onHeroClick}) may be used in future. 
+import { Link } from "react-router-dom";
+import "./hero-card.scss"
+
+export const HeroCard = ({ hero }) => {
+
     return (
-        <span
-            onClick={() => {
-                console.log(hero); //use the search component to to insert a clicked on hero and return their list of movies. 
-            }}
-        >
-            {hero}
-        </span>
+        <Link to={`/?search=${encodeURIComponent(hero)}`}>
+            <span className="hero-link">{` ${hero},`}</span>
+        </Link>
     );
 };

@@ -10,14 +10,15 @@
     display: none;
 }
 
-.cards {
+.favorite-card {
     background-color: #ffdd88;
-    margin: 2%
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
-.favorite-card {
-    padding-left: 2%;
-    padding-right: 2%
+.profile-cards {
+    margin: 4% 0 4% 0;
+    background: #ffdd88
 }
 
 Button {

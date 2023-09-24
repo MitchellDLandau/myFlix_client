@@ -1,4 +1,4 @@
-import { Card, Button, Row, Col, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 
 export const NewMovie = ({ user, token }) => {
@@ -41,7 +41,7 @@ export const NewMovie = ({ user, token }) => {
             .catch((e) => {
                 alert("Something went wrong");
                 console.log(e);
-            });
+            })
     };
 
 

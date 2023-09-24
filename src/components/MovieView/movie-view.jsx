@@ -8,6 +8,8 @@ export const MovieView = ({ movies, user, token }) => {
     const { movieID } = useParams();
     const mover = movies.find((m) => `:${m._id}` === movieID);
 
+    const isMovieInFavorites = user && user.FavoriteMovies.includes(mover._id)
+
     const updateUser = () => {
 
         fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/users/" + user._id, {
@@ -35,7 +37,6 @@ export const MovieView = ({ movies, user, token }) => {
             .then((response) => response.json())
             .then((res) => {
                 if (res) {
-                    alert(`${mover.Title} was added to your favorites.`);
                     updateUser();
                 } else {
                     alert("Movie did not post");
@@ -51,7 +52,6 @@ export const MovieView = ({ movies, user, token }) => {
         })
             .then((res) => {
                 if (res) {
-                    alert(`${mover.Title} was removed from your favorites.`);
                     updateUser();
                 } else {
                     alert("Movie was not removed");
@@ -70,19 +70,25 @@ export const MovieView = ({ movies, user, token }) => {
             <Card.Body>
                 <Card.Text>Descriprion: {mover.Description}</Card.Text>
                 <Card.Text>Directed by: {mover.Director.Name}</Card.Text>
+
+                <Card.Text>Villain: {mover.Villain}</Card.Text>
+                <Card.Text>{mover.Genre.Name}</Card.Text>
                 <Card.Text >
                     Heroes:
                     {mover.Heroes.map((hero) => (
                         <HeroCard
-                            hero={hero} key={hero} />
+                            hero={hero} movies={movies} key={hero} />
                     ))}
                 </Card.Text>
-                <Card.Text>Villain: {mover.Villain}</Card.Text>
-                <Card.Text>{mover.Genre.Name}</Card.Text>
                 <Link to={`/`}>
                     <Button className="back-button">Back</Button>
-                    <Button variant="primary" onClick={favorites}>Add to favorites</Button>
-                    <Button variant="primary" onClick={removeFavorite}>Remove from favorites</Button>
+                </Link>
+                <Link to={`/profile`}>
+                    {isMovieInFavorites ? (
+                        <Button variant="primary" onClick={removeFavorite}>Remove from my favorites</Button>
+                    ) : (
+                        <Button variant="primary" onClick={favorites}>Add to my favorites</Button>
+                    )}
                 </Link>
             </Card.Body>
         </Card>

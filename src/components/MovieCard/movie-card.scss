@@ -1,3 +1,14 @@
-.cardBody {
-    background: #ffdd88;
+.movie-card-body {
+    background: #444444;
+    color: white;
+    margin-top: 2%;
+    margin-bottom: -8%;
+    cursor: pointer
+}
+
+.movie-card-body {
+    &:hover {
+        border: .2rem solid white;
+        background: #5e5e5e
+    }
 }
