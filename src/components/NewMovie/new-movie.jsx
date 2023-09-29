@@ -23,6 +23,8 @@ export const NewMovie = ({ user, token }) => {
             Heroes: heroes,
             Villain: villain
         };
+        console.log(data);
+        console.log(imagePath);
 
         fetch("https://marvel-movie-mapper-0064171d8b92.herokuapp.com/movies", {
             method: "POST",

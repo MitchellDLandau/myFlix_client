@@ -81,7 +81,7 @@ export const MovieView = ({ movies, user, token }) => {
                     ))}
                 </Card.Text>
                 <Link to={`/`}>
-                    <Button className="back-button">Back</Button>
+                    <Button className="back-button">Main</Button>
                 </Link>
                 <Link to={`/profile`}>
                     {isMovieInFavorites ? (
