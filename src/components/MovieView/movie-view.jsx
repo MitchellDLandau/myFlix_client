@@ -63,6 +63,10 @@ export const MovieView = ({ movies, user, token }) => {
         return <div>Movie was not found</div>;
     }
 
+    const returnToPrevious = () => {
+        window.history.back();
+    };
+
     return (
         <Card className="h-100 movieBody" key={mover._id}>
             <Card.Title className="Title">{mover.Title}</Card.Title>
@@ -80,8 +84,8 @@ export const MovieView = ({ movies, user, token }) => {
                             hero={hero} movies={movies} key={hero} />
                     ))}
                 </Card.Text>
-                <Link to={`/`}>
-                    <Button className="back-button">Main</Button>
+                <Link>
+                    <Button className="back-button" onClick={returnToPrevious}>Back</Button>
                 </Link>
                 <Link to={`/profile`}>
                     {isMovieInFavorites ? (
