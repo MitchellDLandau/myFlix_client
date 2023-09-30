@@ -35,7 +35,7 @@ export const NewMovie = ({ user, token }) => {
             .then((data) => {
                 console.log("Login response: ", data);
                 if (data) {
-                    alert(`${data.Title} has been added to the database.`)
+                    alert(`${data.Title} has been added to the database. Reloging in will refresh the movie list.`)
                 } else {
                     alert("Could not add.");
                 }

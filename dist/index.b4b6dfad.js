@@ -48323,7 +48323,7 @@ const NewMovie = ({ user, token })=>{
             body: JSON.stringify(data)
         }).then((response)=>response.json()).then((data)=>{
             console.log("Login response: ", data);
-            if (data) alert(`${data.Title} has been added to the database.`);
+            if (data) alert(`${data.Title} has been added to the database. Reloging in will refresh the movie list.`);
             else alert("Could not add.");
         }).catch((e)=>{
             alert("Something went wrong");
